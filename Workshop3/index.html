@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Workshop 3</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer></script>
+</head>
+
+<body class="ws3">
+    <h1>Workshop 3: JavaScript Events</h1>
+    <hr>
+    <p>
+        In this workshop, you will practise using JavaScript events.
+        Use the course materials for help and save your code for later use.
+    </p>
+    <hr>
+
+    <!-- Exercise 1 -->
+    <h2 id="heading1">Exercise 1: Basic Click Events</h2>
+
+    <p>
+        <button onclick="alert('You clicked me!')">Click me</button>
+        <button onclick="showTable()">Show Animal table</button>
+    </p>
+
+    <div id="tableContainer"></div>
+
+    <hr>
+
+    <!-- Exercise 2 -->
+    <h2 id="heading2">Exercise 2: Event Listeners and DOM Manipulation</h2>
+    <p>Hover over "Exercise 1" heading.</p>
+    <hr>
+
+    <!-- Exercise 3 -->
+    <h2>Exercise 3: Input Events</h2>
+    <h3>Quick Feedback Form</h3>
+
+    <form id="feedbackForm" novalidate>
+        <label for="feedback">Feedback:</label><br>
+        <textarea id="feedback" placeholder="Write your feedback..." rows="5"></textarea><br>
+
+        <div style="margin: 4px 0;">
+            <span id="charcount">0/200</span>
+            <span id="status" aria-live="polite" style="margin-left: 8px; color: #666;"></span>
+        </div>
+
+        <button id="sendBtn" type="submit">Send</button>
+    </form>
+
+    <h3>Preview</h3>
+    <div id="preview" style="border: 1px solid #ccc; padding: 8px; min-height: 40px; background: #fafafa;">
+        (The preview will appear here)
+    </div>
+
+    <hr>
+
+    <!-- Exercise 4 -->
+    <h2>Exercise 4: Form Submission</h2>
+    <p>
+        As above.
+    </p>
+
+    <hr>
+
+    <!-- Exercise 5 -->
+    <h2>Exercise 5: Keyboard Events</h2>
+
+    <h3>Detecting Key Presses</h3>
+
+    <p>
+        Create a program that shows the last key pressed and its key code.
+    </p>
+
+    <div id="keybox" style="padding: 20px; border: 1px solid #ccc; font-size: 1.2em;">
+        Press any key...
+    </div>
+
+    <p id="keyinfo"></p>
+
+    <ul>
+        <li>Add a <code>keydown</code> listener to the document.</li>
+        <li>First, print the event to the console.</li>
+        <li>Show:
+            <ul>
+                <li>the pressed key (<code>event.key</code>)</li>
+                <li>the key code (<code>event.code</code>)</li>
+            </ul>
+            in the <code>#keyinfo</code> element.
+        </li>
+        <li>
+            Change the content of the <code>#keybox</code> element so that it shows the pressed key in a large font.
+        </li>
+    </ul>
+
+    <h4>Bonus Task</h4>
+    <ul>
+        <li>Change the background colour based on the key pressed.</li>
+        <li>Add a counter that shows the number of key presses.</li>
+        <li>Show whether Shift, Ctrl, or Alt is pressed.</li>
+    </ul>
+
+    <hr>
+
+    <!-- Bonus Exercise -->
+    <h2>Bonus Exercise: Google Maps and Geolocation</h2>
+
+    <h3>1. Google Maps and Coordinates</h3>
+    <p>
+        You can open Google Maps at a specific location by adding coordinates to the URL:
+    </p>
+    <code>https://www.google.com/maps?q=60.1699,24.9384</code>
+
+    <hr>
+
+    <h3>2. Finding the User’s Location (Geolocation API)</h3>
+    <p>
+        You can find the user’s location with JavaScript’s <strong>Geolocation API</strong>.
+    </p>
+
+    <pre>
+navigator.geolocation.getCurrentPosition(
+    (position) => {
+        console.log("Latitude:", position.coords.latitude);
+        console.log("Longitude:", position.coords.longitude);
+    },
+    (error) => {
+        console.log("Could not get the location:", error.message);
+    }
+);
+    </pre>
+
+    <p>After you have the coordinates, you can direct the user to Google Maps:</p>
+
+    <pre>
+const url = `https://www.google.com/maps?q=${lat},${lon}`;
+window.location.href = url;
+    </pre>
+
+    <p><em>Note: location access usually works only on HTTPS pages.</em></p>
+
+</body>
+</html>
