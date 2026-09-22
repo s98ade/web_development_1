@@ -120,3 +120,65 @@ if (feedbackForm) {
         }
     });
 }
+
+// Exercise 5
+const keybox = document.querySelector("#keybox");
+const keyinfo = document.querySelector("#keyinfo");
+
+document.addEventListener("keydown", function(event) {
+    console.log(event);
+
+    if (keyinfo) {
+        keyinfo.textContent = `Key ${event.key} | Code ${event.code}`;
+    }
+
+    if (keybox) {
+        keybox.style.fontSize = "3em";
+        keybox.textContent = event.key;
+    }
+});
+
+// Bonus
+const locationBtn = document.querySelector("#locationBtn");
+const locationStatus = document.querySelector("#locationStatus");
+
+if (locationBtn) {
+    locationBtn.addEventListener("click", function() {
+        // Covering the not-happy-path
+        if (!navigator.geolocation) {
+            if (locationStatus) {
+                locationStatus = "Error calling API.";
+            }
+            return
+        }
+
+        if (locationStatus) {
+            locationStatus.textContent = "Fetching location...";
+        }
+
+        // Fetching coordinates
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+
+                console.log("Latitude: ", lat);
+                console.log("Longitude: ", lon);
+
+                if (locationStatus) {
+                    locationStatus.textContent = `Your location is at ${lat}, ${lon}. Redirecting to Google Maps`;
+                }
+                // Opening Google Maps with fetched coordinates
+                const url = `https://www.google.com/maps?q=${lat},${lon}`;
+                window.open(url, "_blank");
+            },
+            // Handling error, when failed to fetch coordinates
+            (error) => {
+                console.log("Could not get location.", error.message);
+                if (locationStatus) {
+                    locationStatus.textContent = `Could not get location: ${error.message}`;
+                }
+            }
+        );
+    });
+}

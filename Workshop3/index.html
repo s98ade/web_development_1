@@ -59,7 +59,7 @@
     <!-- Exercise 4 -->
     <h2>Exercise 4: Form Submission</h2>
     <p>
-        As above.
+        Implementation testable in section "Exercise 3".
     </p>
 
     <hr>
@@ -79,66 +79,17 @@
 
     <p id="keyinfo"></p>
 
-    <ul>
-        <li>Add a <code>keydown</code> listener to the document.</li>
-        <li>First, print the event to the console.</li>
-        <li>Show:
-            <ul>
-                <li>the pressed key (<code>event.key</code>)</li>
-                <li>the key code (<code>event.code</code>)</li>
-            </ul>
-            in the <code>#keyinfo</code> element.
-        </li>
-        <li>
-            Change the content of the <code>#keybox</code> element so that it shows the pressed key in a large font.
-        </li>
-    </ul>
-
-    <h4>Bonus Task</h4>
-    <ul>
-        <li>Change the background colour based on the key pressed.</li>
-        <li>Add a counter that shows the number of key presses.</li>
-        <li>Show whether Shift, Ctrl, or Alt is pressed.</li>
-    </ul>
-
     <hr>
 
     <!-- Bonus Exercise -->
-    <h2>Bonus Exercise: Google Maps and Geolocation</h2>
+     <h2>Bonus Exercise: Google Maps and Geolocation</h2>
 
-    <h3>1. Google Maps and Coordinates</h3>
-    <p>
-        You can open Google Maps at a specific location by adding coordinates to the URL:
-    </p>
-    <code>https://www.google.com/maps?q=60.1699,24.9384</code>
-
-    <hr>
-
-    <h3>2. Finding the User’s Location (Geolocation API)</h3>
-    <p>
-        You can find the user’s location with JavaScript’s <strong>Geolocation API</strong>.
-    </p>
-
-    <pre>
-navigator.geolocation.getCurrentPosition(
-    (position) => {
-        console.log("Latitude:", position.coords.latitude);
-        console.log("Longitude:", position.coords.longitude);
-    },
-    (error) => {
-        console.log("Could not get the location:", error.message);
-    }
-);
-    </pre>
-
-    <p>After you have the coordinates, you can direct the user to Google Maps:</p>
-
-    <pre>
-const url = `https://www.google.com/maps?q=${lat},${lon}`;
-window.location.href = url;
-    </pre>
-
-    <p><em>Note: location access usually works only on HTTPS pages.</em></p>
+     <p><b>Please make sure your location is enabled in your settings of your browser!</b></p>
+     
+     <p>
+        <button id="locationBtn">Show location</button>
+     </p>
+     <p id="locationStatus"></p>
 
 </body>
 </html>
