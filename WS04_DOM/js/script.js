@@ -78,19 +78,94 @@ showAnimalButton.addEventListener("click", function() {
     animalContent.style.display ="block";
 });
 
+// ----- Task 3 ----- //
+const animalSelect = document.querySelector("#animalSelect");
+const animalName = document.querySelector("#animalName");
+const animalImg3 = document.querySelector("#animalImage");
+const animalDesc = document.querySelector("#animalDescription");
 
+// Data struct for each animal
+const animals = {
+    elephant: {
+        name: "Elephant",
+        src: "img/elephant.png",
+        alt: "Elephant",
+        desc: "This is an elephant."
+    },
+    tiger: {
+        name: "Tiger",
+        src: "img/tiger.png",
+        alt: "Tigert",
+        desc: "This is a tiger."
+    },
+    penguin: {
+        name: "Penguin",
+        src: "img/penguin.png",
+        alt: "Penguin",
+        desc: "This is a penguin."
+    },
+    panda: {
+        name: "Panda",
+        src: "img/panda.png",
+        alt: "Panda",
+        desc: "This is a Panda."
+    }
+};
 
-// -------------------------------------------------- EXAMPLE 1 ANIMAL TABLE
-// -------------------------------------------------- EXAMPLE 1 ANIMAL TABLE
+// Change img, text, and alt based on user input via selection
+animalSelect.addEventListener("change", function() {
+    const selectedAnimal = animals[animalSelect.value];
 
+    animalName.textContent = selectedAnimal.name;
+    animalImg3.src = selectedAnimal.src;
+    animalImg3.alt = selectedAnimal.alt;
+    animalDesc.textContent = selectedAnimal.desc;
+});
 
+// Highlight image
+animalImg3.addEventListener("mouseenter", function() {
+    animalImg3.classList.add("image-highlight");
+});
 
-// -------------------------------------------------- EXAMPLE 3 LISTEN DROPDOWN SELECT
-// -------------------------------------------------- EXAMPLE 3 LISTEN DROPDOWN SELECT
+animalImg3.addEventListener("mouseleave", function() {
+    animalImg3.classList.remove("image-highlight");
+});
 
+// ----- Task 4 ----- //
+const animalForm = document.querySelector("#animalForm");
+const observationAnimal = document.querySelector("#observationAnimal");
+const observationLocation = document.querySelector("#observationLocation");
+const observationDate = document.querySelector("#observationDate");
+const observationTableBody = document.querySelector("#observationTableBody");
 
+animalForm.addEventListener("submit", function(event) {
+    event.preventDefault();
 
-// listener for the select element from the drop down list.
+    const animalValue = observationAnimal.value.trim();
+    const locationValue = observationLocation.value.trim();
+    const dateValue = observationDate.value.trim();
 
+    // Check if field empty
+    if (animalValue === "" || locationValue === "" || dateValue === "") {
+        alert("Please fill in required fields before submitting.");
+        return;
+    }
 
-    // function to update the DOM based on the selected animal
+    // Create table body structure
+    const newRow = document.createElement("tr");
+
+    const animalCell = document.createElement("td");
+    animalCell.textContent = animalValue;
+
+    const locationCell = document.createElement("td");
+    locationCell.textContent = locationValue;
+
+    const dateCell = document.createElement("td");
+    dateCell.textContent = dateValue;
+
+    newRow.append(animalCell, locationCell, dateCell);
+
+    observationTableBody.append(newRow);
+
+    animalForm.reset();
+});
